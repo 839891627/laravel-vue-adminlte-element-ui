@@ -19,6 +19,7 @@ Route::get('/vue', function () {
     return view('vue');
 });
 
-Auth::routes();
+Route::post('/login', function (){
+    return request()->json(['code' => 200, 'message' => '登录成功！']);
+});
 
-Route::get('/home', 'HomeController@index');
