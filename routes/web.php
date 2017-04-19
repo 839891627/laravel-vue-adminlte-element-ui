@@ -12,10 +12,6 @@
 */
 
 Route::get('/', function () {
-    return view('adminlte');
-});
-
-Route::get('/vue', function () {
     return view('vue');
 });
 

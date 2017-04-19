@@ -166,8 +166,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Arvin\Admin\Providers\ArvinServiceProvider::class,
-        //
 
         /*
          * Application Service Providers...
