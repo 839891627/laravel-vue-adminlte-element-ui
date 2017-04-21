@@ -13,6 +13,7 @@
                                 <el-input type="password" v-model="form.password"></el-input>
                             </el-form-item>
                             <el-form-item>
+                                <p v-if="tip.length > 0" class="tip">{{ tip }}</p>
                                 <el-button type="primary" @click="login">登录</el-button>
                                 <el-button @click='reset'>取消</el-button>
                             </el-form-item>
@@ -49,7 +50,8 @@
             max: 12,
             message: '密码长度在3-12个字符'
           }]
-        }
+        },
+        tip: ''
       }
     },
     methods: {
@@ -58,8 +60,19 @@
           if (valid) {
             let name = this.form.name
             let password = this.form.password
-            this.$http.post('/login').then((ret) => {
-                this.$router.push('/')
+            this.$http.post('api/login', {
+                email: name,
+                password: password
+            }).then((ret) => {
+                let err = ret.data.error
+                if (err){
+                    this.tip = err
+                }else{
+                    // 登录成功
+                    sessionStorage.setItem('token', ret.data.token)
+                    sessionStorage.setItem('name', name)
+                    this.$router.push('/')
+                }
             })
           } else {
             alert('格式错误！');
@@ -72,4 +85,16 @@
       }
     }
   }
+
+
 </script>
+
+<style>
+    .tip {
+        color: red;
+        padding: 3px
+    }
+
+
+</style>
+

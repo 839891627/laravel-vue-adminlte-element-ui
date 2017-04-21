@@ -60,7 +60,7 @@
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="#" class="btn btn-default btn-flat" @click="loginOut">Sign out</a>
                                 </div>
                             </li>
                         </ul>
@@ -73,6 +73,13 @@
 
 <script>
   export default{
+    methods: {
+        loginOut () {
+            sessionStorage.removeItem('token')
+            sessionStorage.removeItem('name')
+            this.$router.push('/login')
+        }
+    }
   }
 
 </script>
