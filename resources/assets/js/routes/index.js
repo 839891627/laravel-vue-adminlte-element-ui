@@ -1,6 +1,7 @@
 import Home from "../components/Home.vue";
-import Login from "../pages/Login.vue";
 import Dashboard from "../pages/Dashboard.vue";
+import Login from "../pages/Login.vue";
+import User from "../pages/User.vue";
 
 export default [{
     path: '/login',
@@ -8,8 +9,15 @@ export default [{
 }, {
     path: '/',
     component: Home,
+    meta: {
+        requiresAuth: true
+    },
     children: [{
         path: '',
         component: Dashboard
+    },{
+        path: 'users',
+        name: 'user',
+        component: User
     }]
 }]

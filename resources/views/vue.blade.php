@@ -16,13 +16,18 @@
     <script src="http://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+        window.Laravel = {
+            csrfToken: '{{ csrf_token() }}'
+        }
+    </script>
     <title>Vue-Laravel</title>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-    <div id="app"></div>
-    <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="http://cdn.bootcss.com/admin-lte/2.3.11/js/app.min.js"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
+<div id="app"></div>
+<script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://cdn.bootcss.com/admin-lte/2.3.11/js/app.min.js"></script>
+<script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>
