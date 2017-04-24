@@ -2,6 +2,7 @@
     <div class="user">
 
         <el-table
+                v-loading.body="loading"
                 :data="users"
                 border
                 style="width: 100%">
@@ -59,7 +60,8 @@
             users: [],
             total: null,
             current_page: null,
-            per_page: null
+            per_page: null,
+            loading: true
          }
     },
     created () {
@@ -67,12 +69,14 @@
     },
     methods: {
       getUsers (page = 1, pageSize = 10) {
+        this.loading = true // 加载的圈圈
         this.$http.get('/api/user', {
             params: {
                 pageSize: pageSize,
                 page: page
             }
         }).then((ret) => {
+          this.loading = false
           let data = ret.data
           this.users =  data.data
           this.total =  data.meta.pagination.total
