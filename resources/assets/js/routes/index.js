@@ -1,7 +1,8 @@
 import Home from "../components/Home.vue";
 import Dashboard from "../pages/Dashboard.vue";
 import Login from "../pages/Login.vue";
-import User from "../pages/User.vue";
+import User from "../pages/User/index.vue";
+import UserAdd from "../pages/User/add.vue";
 
 export default [{
     path: '/login',
@@ -16,11 +17,15 @@ export default [{
         path: '',
         name: 'home',
         component: Dashboard
-    },{
-        path: 'users',
-        name: 'user',
-        component: User
-    },{
+    }, {
+        path: '/user',
+        name: 'user.index',
+        component: User,
+    }, {
+        path: '/user/add',
+        name: 'user.add',
+        component: UserAdd,
+    }, {
         path: '*',
         redirect: {
             name: 'home'
