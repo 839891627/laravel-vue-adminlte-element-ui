@@ -14,10 +14,16 @@ export default [{
     },
     children: [{
         path: '',
+        name: 'home',
         component: Dashboard
     },{
         path: 'users',
         name: 'user',
         component: User
+    },{
+        path: '*',
+        redirect: {
+            name: 'home'
+        }
     }]
 }]
