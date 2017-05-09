@@ -75,8 +75,7 @@
                 }
             })
           } else {
-            alert('格式错误！');
-            return false
+            this.$message.error('格式不正确！');
           }
         })
       },

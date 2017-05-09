@@ -2,7 +2,9 @@
     <div class="user">
         <el-row>
             <el-col :span='6'>
-                <router-link :to="{name: 'user.add'}"> <el-button type='primary' icon='plus'>添加</el-button> </router-link>
+                <router-link :to="{name: 'user.add'}">
+                    <el-button type='primary' icon='plus'>添加</el-button>
+                </router-link>
             </el-col>
             <el-col :span="6" :offset='12'>
                 <el-form :inline="true" :model="search" class="demo-form-inline">
@@ -50,10 +52,13 @@
                 </el-table-column>
                 <el-table-column label="操作">
                     <template scope="scope">
-                        <el-button
-                                size="small"
-                                @click="handleEdit(scope.row.id)">编辑
-                        </el-button>
+                        <router-link :to="{name: 'user.edit', params: {id: scope.row.id}}">
+                            <el-button
+                                    size="small"
+                                    @click="handleEdit(scope.row.id)">
+                                编辑
+                            </el-button>
+                        </router-link>
                         <el-button
                                 size="small"
                                 type="danger"
@@ -118,15 +123,17 @@
         this.$http.delete('/api/user/'+uid).then((ret) => {
             if (ret.data === 1) {
                 $this.users.splice(index, 1)
-                this.$notify.success('删除成功！');
+                this.$message.success('删除成功！');
             } else {
-                this.$notify.error('删除失败！');
+                this.$message.error('删除失败！');
             }
         })
       }
     },
     components: { Paginator }
   };
+
+
 
 
 

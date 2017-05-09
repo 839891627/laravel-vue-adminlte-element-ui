@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,5 +24,4 @@ $api->version('v1', function ($api) {
 
 $api->version('v1', ['middleware' => 'api.auth'], function ($api) {
     $api->resource('user', 'App\Http\Controllers\Api\UserController');
-//    $api->get('user/{id}', 'App\Http\Controllers\Api\UserController@show');
 });

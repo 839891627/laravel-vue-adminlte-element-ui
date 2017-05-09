@@ -5,13 +5,13 @@
                 <el-input v-model="form.name"></el-input>
             </el-form-item>
             <el-form-item label="邮箱" prop='email'>
-                <el-input v-model="form.email"></el-input>
+                <el-input v-model="form.email" :disabled='true'></el-input>
             </el-form-item>
             <el-form-item label="密码" prop='password'>
                 <el-input type='password' v-model="form.password"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="onSubmit">立即创建</el-button>
+                <el-button type="primary" @click="onUpdate">更新</el-button>
                 <el-button>取消</el-button>
             </el-form-item>
         </el-form>
@@ -22,6 +22,7 @@
     data() {
       return {
         form: {
+          id: '',
           name: '',
           email: '',
           password: '',
@@ -30,13 +31,6 @@
             name: [{
                 required: true,
                 message: '请输入用户名'
-            }],
-            email: [{
-                required: true,
-                message: '请输入邮箱'
-            },{
-                type: 'email',
-                message: '邮箱格式不正确'
             }],
             password: [{
                 required: true,
@@ -49,21 +43,29 @@
         }
       }
     },
+    created () {
+        this.getUser(this.$route.params.id)
+    },
     methods: {
-      onSubmit() {
+      getUser (id) {
+        this.$http.get('/api/user/' + id).then((ret) => {
+            this.form.id = ret.data.data.id
+            this.form.name = ret.data.data.name
+            this.form.email = ret.data.data.email
+        })
+      },
+      onUpdate () {
         this.$refs['form'].validate((valid) => {
           if (valid) {
-            this.$http.post('/api/user', {
+            this.$http.patch('/api/user/' + this.form.id, {
                name: this.form.name,
-               email: this.form.email,
                password: this.form.password
             }).then((ret) => {
               let data = ret.data
               if (data.status_code == 422) {
-                this.$notify.error({
-                  title: data.message,
-                  message: data.errors.email.join('-')
-                });
+                this.$message.error(data.message);
+               }else{
+                this.$message.success(data.message);
                }
             })
           } else {
@@ -73,5 +75,6 @@
       }
     }
   }
+
 
 </script>

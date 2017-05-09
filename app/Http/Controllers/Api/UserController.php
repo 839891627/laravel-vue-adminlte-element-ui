@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Transformers\UserTransformer;
 use App\User;
+use Dingo\Api\Exception\UpdateResourceFailedException;
 use Illuminate\Http\Request;
 
 class UserController extends BaseController
@@ -11,11 +12,11 @@ class UserController extends BaseController
     public function index()
     {
         $pageSize = request()->get('pageSize', 10);
+        $query = new User();
         if ($name = request()->get('name')) {
-            $user = User::where('name', 'like', '%' . $name . '%')->paginate($pageSize);
-        } else {
-            $user = User::paginate($pageSize);
+            $query = $query->where('name', 'like', '%' . $name . '%');
         }
+        $user = $query->orderBy('id', 'desc')->paginate($pageSize);
         return $this->response->paginator($user, new UserTransformer());
     }
 
@@ -40,8 +41,26 @@ class UserController extends BaseController
         }
     }
 
+    public function show($id)
+    {
+        $user = User::find($id);
+        return $this->response->item($user, new UserTransformer());
+    }
+
     public function destroy($id)
     {
         return User::destroy($id);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = [
+            'name' => $request->name,
+            'password' => bcrypt($request->password)
+        ];
+        if (User::where('id', $id)->update($data)) {
+            return $this->response->array(['status_code' => 200, 'message' => '更新成功！']);
+        }
+        throw new UpdateResourceFailedException('更新失败!');
     }
 }

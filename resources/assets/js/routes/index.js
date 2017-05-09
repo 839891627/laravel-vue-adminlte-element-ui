@@ -3,6 +3,7 @@ import Dashboard from "../pages/Dashboard.vue";
 import Login from "../pages/Login.vue";
 import User from "../pages/User/index.vue";
 import UserAdd from "../pages/User/add.vue";
+import UserEdit from "../pages/User/edit.vue";
 
 export default [{
     path: '/login',
@@ -25,6 +26,10 @@ export default [{
         path: '/user/add',
         name: 'user.add',
         component: UserAdd,
+    }, {
+        path: '/user/:id/edit',
+        name: 'user.edit',
+        component: UserEdit,
     }, {
         path: '*',
         redirect: {
