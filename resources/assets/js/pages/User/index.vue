@@ -1,13 +1,13 @@
 <template>
     <div class="user">
         <el-row>
-            <el-col :span='6'>
+            <el-col :md='1'>
                 <router-link :to="{name: 'user.add'}">
                     <el-button type='primary' icon='plus'>添加</el-button>
                 </router-link>
             </el-col>
             <el-form :inline="true" :model="search" class="demo-form-inline">
-                <el-col :span='12' :offset='6'>
+                <el-col :md='6'>
                     <el-form-item label="注册时间">
                         <el-date-picker
                                 v-model="search.created_at"
@@ -30,16 +30,12 @@
                     :data="users"
                     border
                     style="width: 100%">
-                <el-table-column
-                        label="ID"
-                        width="180">
+                <el-table-column label="ID">
                     <template scope="scope">
                         <span style="margin-left: 10px">{{ scope.row.id }}</span>
                     </template>
                 </el-table-column>
-                <el-table-column
-                        label="姓名"
-                        width="180">
+                <el-table-column label="姓名">
                     <template scope="scope">
                         <el-popover trigger="hover" placement="top">
                             <p>姓名: {{ scope.row.name }}</p>
@@ -50,9 +46,7 @@
                         </el-popover>
                     </template>
                 </el-table-column>
-                <el-table-column
-                        label="创建时间"
-                        width="180">
+                <el-table-column label="创建时间">
                     <template scope="scope">
                         <span style="margin-left: 10px">{{ scope.row.created_at }}</span>
                     </template>
@@ -62,14 +56,15 @@
                         <router-link :to="{name: 'user.edit', params: {id: scope.row.id}}">
                             <el-button
                                     size="small"
+                                    icon='edit'
                                     @click="handleEdit(scope.row.id)">
-                                编辑
                             </el-button>
                         </router-link>
                         <el-button
                                 size="small"
                                 type="danger"
-                                @click="handleDelete(scope.$index, scope.row.id)">删除
+                                icon='delete'
+                                @click="confirmDel(scope.$index, scope.row.id, scope.row.name)">
                         </el-button>
                     </template>
                 </el-table-column>
@@ -127,6 +122,20 @@
       handleEdit(uid) {
         console.log(uid);
       },
+      confirmDel(index, uid, name) {
+        this.$confirm('确认删除用户： ' + name + ' ？', '警告', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+            this.handleDelete(index, uid)
+        }).catch(() => {
+           this.$message({
+              type: 'info',
+              message: '已取消删除'
+           });
+        })
+      },
       handleDelete(index, uid) {
         let $this = this
         this.$http.delete('/api/user/'+uid).then((ret) => {
@@ -141,6 +150,8 @@
     },
     components: { Paginator }
   };
+
+
 
 
 
