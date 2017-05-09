@@ -1,13 +1,13 @@
 <template>
     <div class="user">
         <el-row>
-            <el-col :md='1'>
+            <el-col :md='2'>
                 <router-link :to="{name: 'user.add'}">
                     <el-button type='primary' icon='plus'>添加</el-button>
                 </router-link>
             </el-col>
             <el-form :inline="true" :model="search" class="demo-form-inline">
-                <el-col :md='6'>
+                <el-col :md='13' :offset='8'>
                     <el-form-item label="注册时间">
                         <el-date-picker
                                 v-model="search.created_at"
@@ -70,9 +70,12 @@
                 </el-table-column>
             </el-table>
         </el-row>
+        <br>
         <el-row :gutter='20'>
-            <paginator @changePage='getUsers' :total='total' :current_page='current_page'
-                       :per_page='per_page'></paginator>
+            <el-col :push='15' :md='9'>
+                <paginator @changePage='getUsers' :total='total' :current_page='current_page'
+                           :per_page='per_page'></paginator>
+            </el-col>
         </el-row>
     </div>
 </template>
@@ -150,6 +153,7 @@
     },
     components: { Paginator }
   };
+
 
 
 

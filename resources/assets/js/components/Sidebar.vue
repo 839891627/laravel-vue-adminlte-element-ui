@@ -34,9 +34,8 @@
                 <li class="header">HEADER</li>
                 <!-- Optionally, you can add icons to the links -->
                 <li class="active">
-                    <router-link :to="{name: 'user.index'}">用戶管理</router-link>
+                    <router-link :to="{name: 'user.index'}"><i class="fa fa-users"></i><span>用戶管理</span></router-link>
                 </li>
-                <li><a href=""><i class="fa fa-users"></i> <span>Users</span></a></li>
                 <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
                 <li class="treeview">
                     <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
