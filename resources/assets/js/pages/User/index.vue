@@ -140,10 +140,9 @@
         })
       },
       handleDelete(index, uid) {
-        let $this = this
         this.$http.delete('/api/user/'+uid).then((ret) => {
             if (ret.data === 1) {
-                $this.users.splice(index, 1)
+                this.users.splice(index, 1)
                 this.$message.success('删除成功！');
             } else {
                 this.$message.error('删除失败！');
