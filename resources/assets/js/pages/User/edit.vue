@@ -66,6 +66,7 @@
                 this.$message.error(data.message);
                }else{
                 this.$message.success(data.message);
+                this.$router.push('/user')
                }
             })
           } else {

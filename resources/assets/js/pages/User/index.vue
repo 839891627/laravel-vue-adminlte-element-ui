@@ -6,16 +6,23 @@
                     <el-button type='primary' icon='plus'>添加</el-button>
                 </router-link>
             </el-col>
-            <el-col :span="6" :offset='12'>
-                <el-form :inline="true" :model="search" class="demo-form-inline">
+            <el-form :inline="true" :model="search" class="demo-form-inline">
+                <el-col :span='12' :offset='6'>
+                    <el-form-item label="注册时间">
+                        <el-date-picker
+                                v-model="search.created_at"
+                                type="datetimerange"
+                                placeholder="选择注册时间范围">
+                        </el-date-picker>
+                    </el-form-item>
                     <el-form-item label="用户名">
                         <el-input v-model="search.name" placeholder="用户名" @keyup.enter.native='doSearch'></el-input>
                     </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="doSearch">查询</el-button>
                     </el-form-item>
-                </el-form>
-            </el-col>
+                </el-col>
+            </el-form>
         </el-row>
         <el-row :gutter='20'>
             <el-table
@@ -87,21 +94,23 @@
             per_page: null,
             loading: true,
             search: {
-              name: ''
-            }
+              name: '',
+              created_at: []
+            },
          }
     },
     created () {
         this.getUsers()
     },
     methods: {
-      getUsers (page = 1, pageSize = 10, name = '') {
+      getUsers (page = 1, pageSize = 10, name = '', created_at = []) {
         this.loading = true // 加载的圈圈
         this.$http.get('/api/user', {
             params: {
                 pageSize: pageSize,
                 page: page,
-                name: name
+                name: name,
+                created_at: created_at
             }
         }).then((ret) => {
           this.loading = false
@@ -113,7 +122,7 @@
         })
       },
       doSearch () {
-        this.getUsers(this.current_page, this.per_page, this.search.name)
+        this.getUsers(this.current_page, this.per_page, this.search.name, this.search.created_at)
       },
       handleEdit(uid) {
         console.log(uid);
@@ -132,6 +141,11 @@
     },
     components: { Paginator }
   };
+
+
+
+
+
 
 
 

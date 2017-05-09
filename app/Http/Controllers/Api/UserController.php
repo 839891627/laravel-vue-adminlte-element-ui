@@ -12,9 +12,16 @@ class UserController extends BaseController
     public function index()
     {
         $pageSize = request()->get('pageSize', 10);
+
         $query = new User();
         if ($name = request()->get('name')) {
             $query = $query->where('name', 'like', '%' . $name . '%');
+        }
+        if ($created_at = request()->get('created_at')) {
+            $created_at = array_map(function ($item) {
+                return date('Y-m-d H:i:s', strtotime($item));
+            },$created_at);
+            $query = $query->whereBetween('created_at', $created_at);
         }
         $user = $query->orderBy('id', 'desc')->paginate($pageSize);
         return $this->response->paginator($user, new UserTransformer());
