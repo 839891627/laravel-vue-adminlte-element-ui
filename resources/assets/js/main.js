@@ -10,54 +10,53 @@ Vue.use(VueRouter);
 Vue.use(ElementUI);
 
 axios.defaults.headers.common = {
-    'Cache-Control': 'no-cache',
-    'X-CSRF-TOKEN': window.Laravel.csrfToken,
-    'X-Requested-With': 'XMLHttpRequest'
+	'Cache-Control': 'no-cache',
+	'X-CSRF-TOKEN': window.Laravel.csrfToken,
+	'X-Requested-With': 'XMLHttpRequest'
 }
 
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
-    // Do something before request is sent
-    config.headers.Authorization = 'Bearer ' + sessionStorage.getItem('token')
-    return config;
+	// Do something before request is sent
+	config.headers.Authorization = 'Bearer ' + sessionStorage.getItem('token')
+	return config;
 }, function (error) {
-    // Do something with request error
-    return Promise.reject(error);
+	// Do something with request error
+	return Promise.reject(error);
 });
 
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
-    if (response.data.status_code === 401) {
-        location.href = '/#/login'
-    }
-    return response;
+	if (response.data.status_code === 401) {
+		location.href = '/#/login'
+	}
+	return response;
 }, function (error) {
-    // Do something with response error
-    return Promise.reject(error);
+	// Do something with response error
+	return Promise.reject(error);
 });
 
 Vue.prototype.$http = axios;
 
 const router = new VueRouter({
-    model: 'history',
-    base: __dirname,
-    routes
+	model: 'history',
+	base: __dirname,
+	routes
 });
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresAuth)) {
-        if (!sessionStorage.getItem('token') && to.path !== '/login') {
-            next({
-                path: '/login',
-                query: {redirect: to.fullPath}
-            })
-        } else {
-            next()
-        }
-    } else {
-        next()
-    }
+	if (to.matched.some(record => record.meta.requiresAuth) && !sessionStorage.getItem('token')) {
+		next({
+			path: '/login',
+			query: {redirect: to.fullPath}
+		})
+	} else {
+		next()
+	}
 })
 
-
-new Vue(Vue.util.extend({router}, App)).$mount('#app');
+new Vue({
+	el: '#app',
+	router,
+	render: h => h(App)
+});
