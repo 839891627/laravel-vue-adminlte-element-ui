@@ -9,6 +9,7 @@ import "element-ui/lib/theme-default/index.css";
 Vue.use(VueRouter);
 Vue.use(ElementUI);
 
+axios.defaults.baseURL = '/api/'
 axios.defaults.headers.common = {
 	'Cache-Control': 'no-cache',
 	'X-CSRF-TOKEN': window.Laravel.csrfToken,

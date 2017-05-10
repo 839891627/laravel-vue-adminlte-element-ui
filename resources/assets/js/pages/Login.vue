@@ -1,28 +1,28 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Login</div>
-                    <div class="panel-body">
-                        <el-form ref="form" :model="form" label-width="80px" :rules="rules">
-                            <el-form-item label="用户名" prop="name">
-                                <el-input v-model="form.name" placeholder='请填写登录邮箱'></el-input>
-                            </el-form-item>
-                            <el-form-item label="密码" prop="password">
-                                <el-input type="password" v-model="form.password"></el-input>
-                            </el-form-item>
-                            <el-form-item>
-                                <p v-if="tip.length > 0" class="tip">{{ tip }}</p>
-                                <el-button type="primary" @click="login">登录</el-button>
-                                <el-button @click='reset'>取消</el-button>
-                            </el-form-item>
-                        </el-form>
-                    </div>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-2">
+        <div class="panel panel-default">
+          <div class="panel-heading">Login</div>
+          <div class="panel-body">
+            <el-form ref="form" :model="form" label-width="80px" :rules="rules">
+              <el-form-item label="用户名" prop="name">
+                <el-input v-model="form.name" placeholder='请填写登录邮箱'></el-input>
+              </el-form-item>
+              <el-form-item label="密码" prop="password">
+                <el-input type="password" v-model="form.password"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <p v-if="tip.length > 0" class="tip">{{ tip }}</p>
+                <el-button type="primary" @click="login">登录</el-button>
+                <el-button @click='reset'>取消</el-button>
+              </el-form-item>
+            </el-form>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -60,7 +60,7 @@
           if (valid) {
             let name = this.form.name
             let password = this.form.password
-            this.$http.post('api/login', {
+            this.$http.post('/login', {
                 email: name,
                 password: password
             }).then((ret) => {
@@ -86,6 +86,7 @@
   }
 
 
+
 </script>
 
 <style>
@@ -93,6 +94,7 @@
         color: red;
         padding: 3px
     }
+
 
 
 </style>

@@ -1,10 +1,10 @@
 <template>
-    <div class="wrapper">
-        <v-head></v-head>
-        <v-sidebar></v-sidebar>
-        <v-content></v-content>
-        <v-footer></v-footer>
-    </div>
+  <div class="wrapper">
+    <v-head></v-head>
+    <v-sidebar></v-sidebar>
+    <v-content></v-content>
+    <v-footer></v-footer>
+  </div>
 </template>
 
 <script>
@@ -21,5 +21,6 @@
             vFooter
         }
     }
+
 
 </script>

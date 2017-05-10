@@ -1,15 +1,15 @@
 <template>
-    <div class="paginator">
-        <el-pagination
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                :current-page="current_pages"
-                :page-sizes="[10, 20, 30, 40]"
-                :page-size="per_page"
-                layout="total, sizes, prev, pager, next, jumper"
-                :total="total">
-        </el-pagination>
-    </div>
+  <div class="paginator">
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="current_pages"
+      :page-sizes="[10, 20, 30, 40]"
+      :page-size="per_page"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total">
+    </el-pagination>
+  </div>
 </template>
 
 <script>
@@ -33,5 +33,6 @@
       }
     }
   }
+
 
 </script>
