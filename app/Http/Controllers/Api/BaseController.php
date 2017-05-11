@@ -7,5 +7,5 @@ use Dingo\Api\Routing\Helpers;
 
 class BaseController extends Controller
 {
-    use Helpers;
+	use Helpers;
 }

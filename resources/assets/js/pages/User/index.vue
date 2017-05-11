@@ -86,90 +86,72 @@
   export default {
     data() {
       return {
-            users: [],
-            total: null,
-            current_page: null,
-            per_page: null,
-            loading: true,
-            search: {
-              name: '',
-              created_at: []
-            },
-         }
+        users: [],
+        total: null,
+        current_page: null,
+        per_page: null,
+        loading: true,
+        search: {
+          name: '',
+          created_at: []
+        },
+      }
     },
     created () {
-        this.getUsers()
+      this.getUsers(this.current_page, this.per_page, this.search.name, this.search.created_at)
     },
     methods: {
       getUsers (page = 1, pageSize = 10, name = '', created_at = []) {
         this.loading = true // 加载的圈圈
         this.$http.get('/user', {
-            params: {
-                pageSize: pageSize,
-                page: page,
-                name: name,
-                created_at: created_at
-            }
+          params: {
+            pageSize: pageSize,
+            page: page,
+            name: name,
+            created_at: created_at
+          }
         }).then((ret) => {
           this.loading = false
           let data = ret.data
-          this.users =  data.data
-          this.total =  data.meta.pagination.total
-          this.current_page =  data.meta.pagination.current_page
-          this.per_page =  data.meta.pagination.per_page
+          this.users = data.data
+          this.total = data.meta.pagination.total
+          this.current_page = data.meta.pagination.current_page
+          this.per_page = data.meta.pagination.per_page
         })
       },
       doSearch () {
         this.getUsers(this.current_page, this.per_page, this.search.name, this.search.created_at)
       },
-      handleEdit(uid) {
+      handleEdit (uid) {
         console.log(uid);
       },
-      confirmDel(index, uid, name) {
+      confirmDel (index, uid, name) {
         this.$confirm('确认删除用户： ' + name + ' ？', '警告', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-            this.handleDelete(index, uid)
+          this.handleDelete(index, uid)
         }).catch(() => {
-           this.$message({
-              type: 'info',
-              message: '已取消删除'
-           });
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
         })
       },
-      handleDelete(index, uid) {
-        this.$http.delete('/user/'+uid).then((ret) => {
-            if (ret.data === 1) {
-                this.users.splice(index, 1)
-                this.$message.success('删除成功！');
-            } else {
-                this.$message.error('删除失败！');
-            }
+      handleDelete (index, uid) {
+        this.$http.delete('/user/' + uid).then((ret) => {
+          if (ret.data === 1) {
+            this.users.splice(index, 1)
+            this.$message.success('删除成功！');
+          } else {
+            this.$message.error('删除失败！');
+          }
         })
       }
     },
-    components: { Paginator }
+    components: {Paginator}
   };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </script>

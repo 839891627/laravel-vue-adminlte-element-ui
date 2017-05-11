@@ -27,24 +27,24 @@
           password: '',
         },
         rules: {
-            name: [{
-                required: true,
-                message: '请输入用户名'
-            }],
-            email: [{
-                required: true,
-                message: '请输入邮箱'
-            },{
-                type: 'email',
-                message: '邮箱格式不正确'
-            }],
-            password: [{
-                required: true,
-                message: '密码必填'
-            },{
-                min: 3,
-                max: 12,
-                message: '密码长度在3-12个字符'
+          name: [{
+            required: true,
+            message: '请输入用户名'
+          }],
+          email: [{
+            required: true,
+            message: '请输入邮箱'
+          }, {
+            type: 'email',
+            message: '邮箱格式不正确'
+          }],
+          password: [{
+            required: true,
+            message: '密码必填'
+          }, {
+            min: 3,
+            max: 12,
+            message: '密码长度在3-12个字符'
           }]
         }
       }
@@ -54,17 +54,17 @@
         this.$refs['form'].validate((valid) => {
           if (valid) {
             this.$http.post('/user', {
-               name: this.form.name,
-               email: this.form.email,
-               password: this.form.password
+              name: this.form.name,
+              email: this.form.email,
+              password: this.form.password
             }).then((ret) => {
               let data = ret.data
               if (data.status_code == 422) {
-                  this.$message.error(data.message + data.errors.email.join('-'));
-               } else {
-                  this.$message.success('添加成功！');
-                  this.$router.push('/user')
-               }
+                this.$message.error(data.message + data.errors.email.join('-'));
+              } else {
+                this.$message.success('添加成功！');
+                this.$router.push('/user')
+              }
             })
           } else {
             this.$message.error('格式不正确！');
@@ -76,7 +76,6 @@
       }
     }
   }
-
 
 
 </script>

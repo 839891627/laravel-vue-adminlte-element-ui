@@ -37,23 +37,23 @@
   export default{
     computed: {
       name () {
-          return sessionStorage.getItem('name')
+        return sessionStorage.getItem('name')
       }
     },
     methods: {
-        logout () {
-            this.$confirm('确认退出？', '提示', {
-              confirmButtonText: '确定',
-              cancelButtonText: '取消',
-              type: 'warning'
-            }).then(() => {
-                sessionStorage.removeItem('token')
-                sessionStorage.removeItem('name')
-                this.$router.push('/login')
-            }).catch(() => {
-              return false
-            })
-        }
+      logout () {
+        this.$confirm('确认退出？', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          sessionStorage.removeItem('token')
+          sessionStorage.removeItem('name')
+          this.$router.push('/login')
+        }).catch(() => {
+          return false
+        })
+      }
     }
   }
 

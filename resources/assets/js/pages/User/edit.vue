@@ -28,46 +28,46 @@
           password: '',
         },
         rules: {
-            name: [{
-                required: true,
-                message: '请输入用户名'
-            }],
-            password: [{
-                required: true,
-                message: '密码必填'
-            },{
-                min: 3,
-                max: 12,
-                message: '密码长度在3-12个字符'
+          name: [{
+            required: true,
+            message: '请输入用户名'
+          }],
+          password: [{
+            required: true,
+            message: '密码必填'
+          }, {
+            min: 3,
+            max: 12,
+            message: '密码长度在3-12个字符'
           }]
         }
       }
     },
     created () {
-        this.getUser(this.$route.params.id)
+      this.getUser(this.$route.params.id)
     },
     methods: {
       getUser (id) {
         this.$http.get('/user/' + id).then((ret) => {
-            this.form.id = ret.data.data.id
-            this.form.name = ret.data.data.name
-            this.form.email = ret.data.data.email
+          this.form.id = ret.data.data.id
+          this.form.name = ret.data.data.name
+          this.form.email = ret.data.data.email
         })
       },
       onUpdate () {
         this.$refs['form'].validate((valid) => {
           if (valid) {
             this.$http.patch('/user/' + this.form.id, {
-               name: this.form.name,
-               password: this.form.password
+              name: this.form.name,
+              password: this.form.password
             }).then((ret) => {
               let data = ret.data
               if (data.status_code == 422) {
                 this.$message.error(data.message);
-               }else{
+              } else {
                 this.$message.success(data.message);
                 this.$router.push('/user')
-               }
+              }
             })
           } else {
             this.$message.error('格式不正确！');

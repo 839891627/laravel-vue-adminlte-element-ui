@@ -16,11 +16,11 @@
   export default {
     name: 'Paginator',
     computed: {
-        current_pages () {
-            return this.current_page
-        }
+      current_pages () {
+        return this.current_page
+      }
     },
-    props:['total', 'current_page', 'per_page'],
+    props: ['total', 'current_page', 'per_page'],
     methods: {
       handleSizeChange(val) {
         //console.log(`每页 ${val} 条`);

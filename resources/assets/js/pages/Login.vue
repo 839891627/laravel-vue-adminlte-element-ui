@@ -38,14 +38,14 @@
           name: [{
             required: true,
             message: '用户名必填'
-          },{
+          }, {
             type: 'email',
             message: '邮箱格式不正确'
           }],
           password: [{
             required: true,
             message: '密码必填'
-          },{
+          }, {
             min: 3,
             max: 12,
             message: '密码长度在3-12个字符'
@@ -61,18 +61,18 @@
             let name = this.form.name
             let password = this.form.password
             this.$http.post('/login', {
-                email: name,
-                password: password
+              email: name,
+              password: password
             }).then((ret) => {
-                let err = ret.data.error
-                if (err){
-                    this.tip = err
-                }else{
-                    // 登录成功
-                    sessionStorage.setItem('token', ret.data.token)
-                    sessionStorage.setItem('name', name)
-                    this.$router.push('/')
-                }
+              let err = ret.data.error
+              if (err) {
+                this.tip = err
+              } else {
+                // 登录成功
+                sessionStorage.setItem('token', ret.data.token)
+                sessionStorage.setItem('name', name)
+                this.$router.push('/')
+              }
             })
           } else {
             this.$message.error('格式不正确！');
@@ -86,15 +86,13 @@
   }
 
 
-
 </script>
 
 <style>
-    .tip {
-        color: red;
-        padding: 3px
-    }
-
+  .tip {
+    color: red;
+    padding: 3px
+  }
 
 
 </style>
