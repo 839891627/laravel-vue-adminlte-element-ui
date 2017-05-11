@@ -4,6 +4,7 @@ import Login from "../pages/Login.vue";
 import User from "../pages/User/index.vue";
 import UserAdd from "../pages/User/add.vue";
 import UserEdit from "../pages/User/edit.vue";
+import Permission from "../pages/System/Permission/index.vue";
 
 export default [{
 	path: '/login',
@@ -30,6 +31,10 @@ export default [{
 		path: '/user/:id/edit',
 		name: 'user.edit',
 		component: UserEdit,
+	}, {
+		path: '/system/permissoin',
+		name: 'system.permission',
+		component: Permission,
 	}, {
 		path: '*',
 		redirect: {
