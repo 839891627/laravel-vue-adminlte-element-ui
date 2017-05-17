@@ -13,7 +13,9 @@ axios.defaults.baseURL = '/api/'
 axios.defaults.headers.common = {
 	'Cache-Control': 'no-cache',
 	'X-CSRF-TOKEN': window.Laravel.csrfToken,
-	'X-Requested-With': 'XMLHttpRequest'
+	'X-Requested-With': 'XMLHttpRequest',
+	'Content-Type': 'application/vnd.api+json',
+	'Accept': 'application/vnd.api+json'
 }
 
 // Add a request interceptor

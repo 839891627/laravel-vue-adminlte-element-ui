@@ -5,6 +5,9 @@ import User from "../pages/User/index.vue";
 import UserAdd from "../pages/User/add.vue";
 import UserEdit from "../pages/User/edit.vue";
 import Permission from "../pages/System/Permission/index.vue";
+import Role from "../pages/System/Role/index.vue";
+import RoleAdd from "../pages/System/Role/add.vue";
+import RoleEdit from "../pages/System/Role/edit.vue";
 
 export default [{
 	path: '/login',
@@ -32,9 +35,21 @@ export default [{
 		name: 'user.edit',
 		component: UserEdit,
 	}, {
-		path: '/system/permissoin',
+		path: 'system/permissoins',
 		name: 'system.permission',
-		component: Permission,
+		component: Permission
+	}, {
+		path: 'system/roles',
+		name: 'system.role',
+		component: Role
+	}, {
+		path: 'system/roles/create',
+		name: 'system.role.add',
+		component: RoleAdd
+	}, {
+		path: 'system/roles/:id/edit',
+		name: 'system.role.edit',
+		component: RoleEdit
 	}, {
 		path: '*',
 		redirect: {

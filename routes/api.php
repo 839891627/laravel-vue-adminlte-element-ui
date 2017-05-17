@@ -25,6 +25,7 @@ $api->version('v1', function ($api) {
 $api->version('v1', ['middleware' => 'api.auth'], function ($api) {
 	$api->group(['prefix' => 'system'], function ($api) {
 		$api->resource('permission', 'App\Http\Controllers\Api\System\PermissionController');
+		$api->resource('role', 'App\Http\Controllers\Api\System\RoleController');
 	});
 	$api->resource('user', 'App\Http\Controllers\Api\UserController');
 });

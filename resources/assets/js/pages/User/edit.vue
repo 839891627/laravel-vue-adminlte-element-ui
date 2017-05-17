@@ -1,21 +1,23 @@
 <template>
-  <el-col :span='6'>
-    <el-form ref="form" :model="form" :rules='rules' label-width="80px">
-      <el-form-item label="用户名" prop='name'>
-        <el-input v-model="form.name"></el-input>
-      </el-form-item>
-      <el-form-item label="邮箱" prop='email'>
-        <el-input v-model="form.email" :disabled='true'></el-input>
-      </el-form-item>
-      <el-form-item label="密码" prop='password'>
-        <el-input type='password' v-model="form.password"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="onUpdate">更新</el-button>
-        <el-button @click='cancel'>取消</el-button>
-      </el-form-item>
-    </el-form>
-  </el-col>
+  <el-row>
+    <el-col :span='12'>
+      <el-form ref="form" :model="form" :rules='rules' label-width="80px">
+        <el-form-item label="用户名" prop='name'>
+          <el-input v-model="form.name"></el-input>
+        </el-form-item>
+        <el-form-item label="邮箱" prop='email'>
+          <el-input v-model="form.email" :disabled='true'></el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop='password'>
+          <el-input type='password' v-model="form.password"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onUpdate">更新</el-button>
+          <el-button @click='cancel'>取消</el-button>
+        </el-form-item>
+      </el-form>
+    </el-col>
+  </el-row>
 </template>
 <script>
   export default {

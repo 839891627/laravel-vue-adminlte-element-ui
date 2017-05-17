@@ -26,7 +26,14 @@
           <template scope="scope">
             <el-button
               size="small"
-              @click="handleEdit(scope.$index, scope.row)">编辑
+              icon="edit"
+              @click="handleEdit(scope.$index, scope.row)">
+            </el-button>
+            <el-button
+              size="small"
+              type="danger"
+              icon="delete"
+              @click="handleDelete(scope.$index, scope.row.id, scope.row.name)">
             </el-button>
           </template>
         </el-table-column>
@@ -34,7 +41,7 @@
     </el-row>
     <br>
     <el-row :gutter='20'>
-      <el-col :push='15' :md='9'>
+      <el-col :offset='5' :md='9'>
         <paginator @changePage='getPermissions' :total='total' :current_page='current_page'
                    :per_page='per_page'></paginator>
       </el-col>
@@ -110,6 +117,23 @@
         this.dialog.display_name = row.display_name
         this.dialog.description = row.description
       },
+      handleDelete(index, id, name) {
+        this.$confirm('确认删除权限: ' + name + '?', '警告', {
+          confirmButtonText: '确认',
+          cancelButtonText: '取消'
+        }).then(() => {
+          this.$http.delete('/system/permission/' + id).then((ret) => {
+            if (ret.data === 1) {
+              this.permissions.splice(index, 1)
+              this.$message.success('删除成功！');
+            } else {
+              this.$message.error('删除失败！');
+            }
+          })
+        }).catch(() => {
+          this.$message.info('已取消删除')
+        })
+      },
       addData () {
         this.dialogFormVisible = true
         this.dialog.isAdd = true
@@ -122,7 +146,6 @@
             display_name: this.dialog.display_name,
             description: this.dialog.description
           }).then((ret) => {
-
             // 更新视图
             this.permissions[this.dialog.row].display_name = this.dialog.display_name
             this.permissions[this.dialog.row].description = this.dialog.description

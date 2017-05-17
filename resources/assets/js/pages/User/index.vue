@@ -2,9 +2,7 @@
   <div class="user">
     <el-row>
       <el-col :md='2'>
-        <router-link :to="{name: 'user.add'}">
-          <el-button type='primary' icon='plus'>添加</el-button>
-        </router-link>
+        <el-button type="primary" icon="plus" @click="$router.push({name: 'user.add'})">添加</el-button>
       </el-col>
       <el-form :inline="true" :model="search" class="demo-form-inline">
         <el-col :md='13' :offset='8'>
@@ -53,13 +51,11 @@
         </el-table-column>
         <el-table-column label="操作">
           <template scope="scope">
-            <router-link :to="{name: 'user.edit', params: {id: scope.row.id}}">
-              <el-button
-                size="small"
-                icon='edit'
-                @click="handleEdit(scope.row.id)">
-              </el-button>
-            </router-link>
+            <el-button
+              size="small"
+              icon='edit'
+              @click="$router.push({name: 'user.edit', params: {id: scope.row.id}})">
+            </el-button>
             <el-button
               size="small"
               type="danger"
@@ -121,9 +117,6 @@
       },
       doSearch () {
         this.getUsers(this.current_page, this.per_page, this.search.name, this.search.created_at)
-      },
-      handleEdit (uid) {
-        console.log(uid);
       },
       confirmDel (index, uid, name) {
         this.$confirm('确认删除用户： ' + name + ' ？', '警告', {

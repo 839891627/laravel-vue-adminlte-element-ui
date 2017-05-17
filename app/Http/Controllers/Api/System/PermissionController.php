@@ -23,7 +23,17 @@ class PermissionController extends BaseController
 
 	public function store()
 	{
-		$id = Permission::insertGetId(request()->all());
+//		Permission::create(request()->all());
+//		return $this->response->created();
+
+		$data = request()->only('name', 'display_name', 'description');
+		$data['created_at'] = $data['updated_at'] = date('Y-m-d H:i:s');
+		$id = Permission::insertGetId($data);
 		return $this->response->array(['id' => $id]);
+	}
+
+	public function destroy($id)
+	{
+		return Permission::destroy($id);
 	}
 }

@@ -45,9 +45,11 @@
           </a>
           <ul class="treeview-menu">
             <li>
+              <router-link :to="{name: 'system.role'}">角色管理</router-link>
+            </li>
+            <li>
               <router-link :to="{name: 'system.permission'}">权限管理</router-link>
             </li>
-            <li><a href="#">Link in level 2</a></li>
           </ul>
         </li>
       </ul>
