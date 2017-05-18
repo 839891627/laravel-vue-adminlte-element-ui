@@ -44,6 +44,7 @@ Vue.prototype.$http = axios;
 const router = new VueRouter({
 	model: 'history',
 	base: __dirname,
+	linkActiveClass: 'active',
 	routes
 });
 

@@ -9,7 +9,7 @@
           <el-input v-model="form.display_name"></el-input>
         </el-form-item>
         <el-form-item label="角色描述" prop='description'>
-          <el-input v-model="form.description"></el-input>
+          <el-input type="textarea" v-model="form.description"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onSubmit">更新</el-button>

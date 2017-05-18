@@ -33,10 +33,8 @@
       <ul class="sidebar-menu">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active">
-          <router-link :to="{name: 'user.index'}"><i class="fa fa-users"></i><span>用戶管理</span></router-link>
-        </li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+        <router-link :to="{name: 'user.index'}" tag="li"><a><i class="fa fa-users"></i><span>用戶管理</span></a>
+        </router-link>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>系统管理</span>
             <span class="pull-right-container">
@@ -44,12 +42,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li>
-              <router-link :to="{name: 'system.role'}">角色管理</router-link>
-            </li>
-            <li>
-              <router-link :to="{name: 'system.permission'}">权限管理</router-link>
-            </li>
+            <router-link :to="{name: 'system.role'}" tag="li"><a>角色管理</a></router-link>
+            <router-link :to="{name: 'system.permission'}" tag="li"><a>权限管理</a></router-link>
           </ul>
         </li>
       </ul>
