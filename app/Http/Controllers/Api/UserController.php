@@ -18,7 +18,7 @@ class UserController extends BaseController
 			$query = $query->where('name', 'like', '%' . $name . '%');
 		}
 		if ($created_at = request()->get('created_at')) {
-			if (in_array('null', $created_at)) {
+			if (!in_array('null', $created_at)) {
 				$created_at = array_map(function ($item) {
 					return date('Y-m-d H:i:s', strtotime($item));
 				}, $created_at);
