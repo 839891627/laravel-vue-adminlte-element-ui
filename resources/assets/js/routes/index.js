@@ -35,7 +35,7 @@ export default [{
 		name: 'user.edit',
 		component: UserEdit,
 	}, {
-		path: 'system/permissoins',
+		path: 'system/permissions',
 		name: 'system.permission',
 		component: Permission
 	}, {
