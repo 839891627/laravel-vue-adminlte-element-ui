@@ -11,9 +11,9 @@
           <div class="panel panel-info">
             <div class="panel-heading">页面标题</div>
             <div class="panel-body">
-              <transition enter-active-class="animated fadeInDown">
+              <!--<transition enter-active-class="animated fadeInDown">-->
                 <router-view></router-view>
-              </transition>
+              <!--</transition>-->
             </div>
           </div>
         </div>
