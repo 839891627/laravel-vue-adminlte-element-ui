@@ -11,14 +11,12 @@
             <span>{{ name }}</span>
             <img class="logout"
                  src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3443681203,2121587026&fm=11&gp=0.jpg">
-            <div>
-              <i class="glyphicon glyphicon-log-out dropdown-toggle" type="button" id="dropdownMenu1"
-                 data-toggle="dropdown"
-                 aria-haspopup="true" aria-expanded="true"></i>
-              <ul class="logout-menu dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a @click="logout">退出</a></li>
-              </ul>
-            </div>
+            <i class="glyphicon glyphicon-log-out dropdown-toggle" type="button" id="dropdownMenu1"
+               data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="true"></i>
+            <ul class="logout-menu dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a @click="logout">退出</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -119,6 +117,7 @@
 
   .logout-menu {
     min-width: 80px !important;
+    left: 200px !important;
   }
 
   .dropdown {
